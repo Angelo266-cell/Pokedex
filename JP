@@ -1,0 +1,64 @@
+const url = "https://pokeapi.co/api/v2/pokemon/384"
+const resultado = document.getElementById('resultado')
+const campoBusca = document.getElementById('campoBusca')
+const btnBuscar = document.getElementById('btnBuscar')
+var pokemonAtual = 1;
+buscarPokemon(1)
+
+// Forma Compacta, usando arrow function
+// function buscarPokemon(termo) {
+//     const url = "https://pokeapi.co/api/v2/pokemon/" + termo
+//     const resposta = fetch(url)
+//         .then(resposta => resposta.json())
+//         .then(resposta => resultado.innerHTML = `
+//                         <img src="${resposta.sprites.front_default}"/>
+//                         <p>#${resposta.id}</p>
+//                         <h2>${resposta.name}</h2>
+//                     `)
+// }
+
+async function buscarPokemon(termo) {
+    const url = "https://pokeapi.co/api/v2/pokemon/" + termo
+    const resposta = await fetch(url)
+    const pokemon = await resposta.json()
+
+    resultado.innerHTML = `
+        <img src="${pokemon.sprites.front_default}"/>
+        <p>#${pokemon.id}</p>
+        <h2>${pokemon.name}</h2>
+    `
+}
+
+btnBuscar.addEventListener('click', () => {
+    console.log("Fui clicado buscando pokemon " + campoBusca.value)
+    buscarPokemon(campoBusca.value)
+    buscarPokemon(pokemonAtual)
+});
+
+campoBusca.addEventListener('kayup', evento => {
+
+})
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pokedex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Pokedex</h1>
+    <input type="text" id="campoBusca" placeholder="Nome ou Numero">
+    <button id="btnBuscar">Buscar</button>
+    <div id="resultado"></div>
+
+    <button id="btnAnterior">Anterior</button>
+    <button id="btnAleatório">Aleatório</button>
+    <button id="btnPróximo">Próximo</button>
+    
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
