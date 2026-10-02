@@ -1,20 +1,24 @@
-const url = "https://pokeapi.co/api/v2/pokemon/384"
+
 const resultado = document.getElementById('resultado')
 const campoBusca = document.getElementById('campoBusca')
 const btnBuscar = document.getElementById('btnBuscar')
-var pokemonAtual = 1;
-buscarPokemon(1)
+const btnAnterior = document.getElementById('btnAnterior')
+const btnAleatorio = document.getElementById('btnAleatorio')
+const btnProximo = document.getElementById('btnProximo')
 
-// Forma Compacta, usando arrow function
+var pokemonAtual = 1;
+buscarPokemon(pokemonAtual)
+
 // function buscarPokemon(termo) {
 //     const url = "https://pokeapi.co/api/v2/pokemon/" + termo
-//     const resposta = fetch(url)
+//     // Forma Compacta, usando arrow function
+//     fetch(url)
 //         .then(resposta => resposta.json())
 //         .then(resposta => resultado.innerHTML = `
-//                         <img src="${resposta.sprites.front_default}"/>
-//                         <p>#${resposta.id}</p>
-//                         <h2>${resposta.name}</h2>
-//                     `)
+//             <img src="${resposta.sprites.front_default}"/>
+//             <p>#${resposta.id}</p>
+//             <h2>${resposta.name}</h2>
+//         `)
 // }
 
 async function buscarPokemon(termo) {
@@ -22,6 +26,7 @@ async function buscarPokemon(termo) {
     const resposta = await fetch(url)
     const pokemon = await resposta.json()
 
+    pokemonAtual = pokemon.id
     resultado.innerHTML = `
         <img src="${pokemon.sprites.front_default}"/>
         <p>#${pokemon.id}</p>
@@ -31,10 +36,31 @@ async function buscarPokemon(termo) {
 
 btnBuscar.addEventListener('click', () => {
     console.log("Fui clicado buscando pokemon " + campoBusca.value)
-    buscarPokemon(campoBusca.value)
+    pokemonAtual = campoBusca.value
     buscarPokemon(pokemonAtual)
 });
 
-campoBusca.addEventListener('kayup', evento => {
+campoBusca.addEventListener('keyup', evento => {
+    if (evento.key == "Enter") {
+        btnBuscar.click()
+    }
+})
 
+btnProximo.addEventListener('click' , () => {
+    console.log('Buscando Proximo Pokemon')
+    pokemonAtual++
+    buscarPokemon(pokemonAtual)
+})
+
+btnAnterior.addEventListener('click' , () => {
+    console.log('Buscando Pokemon Anterior')
+    pokemonAtual--
+    buscarPokemon(pokemonAtual)
+})
+
+btnAleatorio.addEventListener('click' , () => {
+    console.log('Pokemon aleatorio')
+    // essa função gera um numero aleatorio entre 0 e 1
+    pokemonAtual = Math.random() 
+    buscarPokemon(pokemonAtual)
 })
