@@ -1,4 +1,5 @@
 
+
 const resultado = document.getElementById('resultado')
 const campoBusca = document.getElementById('campoBusca')
 const btnBuscar = document.getElementById('btnBuscar')

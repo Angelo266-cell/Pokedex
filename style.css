@@ -1,3 +1,182 @@
-body {
-  background-color: red;
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #ec0000 0%, lch(53.23% 104.58 40) 100%);
+    --card-bg: #989898;
+    --text-main: #fa0505;
+    --text-muted: #ff0000;
+    --accent-color: #ff4757; 
+    --accent-hover: #ff6b81;
+    --button-secondary: #fbfbfb;
+    --button-secondary-text: #ffd500;
+    --border-radius: 16px;
+}
+
+
+    body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+
+    
+    background-image: url('https://cdn.wallpapersafari.com/62/51/uiFg8C.jpg'); 
+    background-size: cover;                   
+    background-position: center;               
+    background-repeat: no-repeat;              
+    background-attachment: fixed;               
+}
+
+
+
+
+.app-card {
+    background-color: var(--card-bg);
+    width: 380px;
+    padding: 32px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+
+.app-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.app-header p {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+
+.display-area {
+    background-color: #ff7300fa;
+    border-radius: var(--border-radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+
+#resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#resultado img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+#resultado img:hover {
+    transform: scale(1.1); 
+}
+
+
+#resultado p {
+    margin: 12px 0 4px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+
+#resultado h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: var(--text-main);
+}
+
+
+.search-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+#campoBusca {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#campoBusca:focus {
+    border-color: var(--accent-color);
+}
+
+#btnBuscar {
+    background-color: var(--text-main);
+    color: rgb(223, 188, 188);
+    border: none;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#btnBuscar:hover {
+    background-color: #ffffff;
+}
+
+
+.navigation-group {
+    display: flex;
+    gap: 8px;
+}
+
+button.btn-primary, button.btn-secondary {
+    padding: 12px 8px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button.btn-primary {
+    flex: 1.5;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+button.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+button.btn-secondary {
+    flex: 1;
+    background-color: var(--button-secondary);
+    color: var(--button-secondary-text);
+}
+
+button.btn-secondary:hover {
+    background-color: #ffffff;
+}
+
+button:active {
+    transform: scale(0.97); /* Feedback sutil de clique */
 }
